@@ -8,6 +8,9 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+const matchesRouter = require('./routes/matches')
+app.use('/api/matches', matchesRouter)
+
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB connecté'))
