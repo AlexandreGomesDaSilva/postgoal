@@ -1,0 +1,138 @@
+.history-page {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .history-loading,
+  .history-empty {
+    text-align: center;
+    color: #888;
+  }
+
+  .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .history-card {
+    background-color: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .history-card-date {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .history-card-score {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-align: center;
+
+      .score-a { color: #fca5a5; }
+      .score-b { color: #93c5fd; }
+    }
+
+    .history-card-teams {
+      font-size: 0.9rem;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .team-a { color: #fca5a5; }
+      .team-b { color: #93c5fd; }
+      .vs { color: #555; }
+    }
+
+    .history-card-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+
+      .details-button {
+        padding: 8px 20px;
+        background-color: #14532d;
+        color: #f0f0f0;
+        border: 1px solid #166534;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+
+        &:hover {
+          background-color: #166534;
+        }
+      }
+
+      .delete-button {
+        padding: 8px 20px;
+        background-color: #7f1d1d;
+        color: #fca5a5;
+        border: 1px solid #991b1b;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+
+        &:hover {
+          background-color: #991b1b;
+        }
+      }
+
+      .confirm-button {
+        padding: 8px 20px;
+        background-color: #7f1d1d;
+        color: #fca5a5;
+        border: 1px solid #991b1b;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+
+        &:hover {
+          background-color: #991b1b;
+        }
+      }
+
+      .cancel-button {
+        padding: 8px 20px;
+        background-color: #1a1a1a;
+        color: #aaa;
+        border: 1px solid #333;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+
+        &:hover {
+          background-color: #222;
+        }
+      }
+    }
+  }
+
+  .back-button {
+    display: block;
+    margin: 32px auto 0;
+    padding: 10px 30px;
+    background-color: #1a1a1a;
+    color: #aaa;
+    border: 1px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    &:hover {
+      background-color: #222;
+    }
+  }
+}
