@@ -1,0 +1,88 @@
+.history-page {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .history-loading,
+  .history-empty {
+    text-align: center;
+    color: #888;
+  }
+
+  .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .history-card {
+    background-color: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .history-card-date {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .history-card-score {
+      font-size: 1.8rem;
+      font-weight: bold;
+
+      .score-a { color: #fca5a5; }
+      .score-b { color: #93c5fd; }
+    }
+
+    .history-card-teams {
+      font-size: 0.9rem;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .team-a { color: #fca5a5; }
+      .team-b { color: #93c5fd; }
+      .vs { color: #555; }
+    }
+
+    .details-button {
+      align-self: flex-end;
+      padding: 8px 20px;
+      background-color: #1e3a5f;
+      color: #93c5fd;
+      border: 1px solid #2a4a7f;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+
+      &:hover {
+        background-color: #2a4a7f;
+      }
+    }
+  }
+
+  .back-button {
+    display: block;
+    margin: 32px auto 0;
+    padding: 10px 30px;
+    background-color: #1a1a1a;
+    color: #aaa;
+    border: 1px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    &:hover {
+      background-color: #222;
+    }
+  }
+}
