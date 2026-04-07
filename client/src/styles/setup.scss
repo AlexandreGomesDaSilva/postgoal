@@ -67,6 +67,28 @@
     color: #f0f0f0;
   }
 
+  .random-button {
+    display: block;
+    margin: 10px auto 0;
+    padding: 12px 40px;
+    background-color: #3b0764;
+    color: #e9d5ff;
+    border: 1px solid #7e22ce;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+
+    &:hover:not(:disabled) {
+      background-color: #581c87;
+      color: #f3e8ff;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
   .launch-button {
     display: block;
     margin: 30px auto 0;

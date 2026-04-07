@@ -17,6 +17,17 @@ export default function Setup() {
     });
   };
 
+  const allFilled = [...players.teamA, ...players.teamB].every((p) => p.trim() !== "");
+
+  const generateRandomTeams = () => {
+    const all = [...players.teamA, ...players.teamB];
+    for (let i = all.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [all[i], all[j]] = [all[j], all[i]];
+    }
+    setPlayers({ teamA: all.slice(0, 5), teamB: all.slice(5) });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
     navigate("/match", { state: { players } });
@@ -50,6 +61,14 @@ export default function Setup() {
               />
             ))}
           </div>
+          <button
+            type="button"
+            className="random-button"
+            onClick={generateRandomTeams}
+            disabled={!allFilled}
+          >
+            Générer les équipes aléatoirement
+          </button>
           <button type="submit" className="launch-button">Lancer le match</button>
         </form>
       </div>
