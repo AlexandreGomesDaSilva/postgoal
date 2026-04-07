@@ -13,7 +13,8 @@ export default function History() {
       .then((data) => {
         setMatches(data);
         setLoading(false);
-      });
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   const goToRecap = (apiMatch) => {
