@@ -6,10 +6,21 @@ export default function History() {
   const navigate = useNavigate();
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+
+  const deleteMatch = (id) => {
+    fetch(`/api/matches/${id}`, { method: "DELETE" }).then(() => {
+      setMatches((prev) => prev.filter((m) => m._id !== id));
+      setConfirmDeleteId(null);
+    });
+  };
 
   useEffect(() => {
     fetch("/api/matches")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
       .then((data) => {
         setMatches(data);
         setLoading(false);
@@ -64,9 +75,25 @@ export default function History() {
               <span className="vs">vs</span>
               <span className="team-b">{m.teamB.join(", ")}</span>
             </div>
-            <button className="details-button" onClick={() => goToRecap(m)}>
-              Voir détails
-            </button>
+            <div className="history-card-actions">
+              <button className="details-button" onClick={() => goToRecap(m)}>
+                Voir détails
+              </button>
+              {confirmDeleteId === m._id ? (
+                <>
+                  <button className="confirm-button" onClick={() => deleteMatch(m._id)}>
+                    Confirmer ?
+                  </button>
+                  <button className="cancel-button" onClick={() => setConfirmDeleteId(null)}>
+                    Annuler
+                  </button>
+                </>
+              ) : (
+                <button className="delete-button" onClick={() => setConfirmDeleteId(m._id)}>
+                  Supprimer
+                </button>
+              )}
+            </div>
           </div>
         ))}
       </div>
