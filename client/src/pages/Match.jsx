@@ -16,6 +16,7 @@ export default function Match() {
 
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const intervalRef = useRef(null);
 
   useEffect(() => {
@@ -82,26 +83,32 @@ export default function Match() {
   const scoreB = match.teamB.reduce((total, p) => total + p.goals.length, 0);
 
   const onSubmit = async () => {
-    const payload = {
-      duration: formatTime(time),
-      teamA: match.teamA.map((p) => p.name),
-      teamB: match.teamB.map((p) => p.name),
-      scoreA,
-      scoreB,
-      goals: history.map((action) => ({
-        player: match[action.team][action.playerIndex].name,
-        team: action.team === "teamA" ? "A" : "B",
-        minute: action.minute,
-      })),
-    };
-
-    await fetch("/api/matches", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    navigate("/recap", { state: { match, history, time } });
+    setIsSaving(true);
+    try {
+      const payload = {
+        duration: formatTime(time),
+        teamA: match.teamA.map((p) => p.name),
+        teamB: match.teamB.map((p) => p.name),
+        scoreA,
+        scoreB,
+        goals: history.map((action) => ({
+          player: match[action.team][action.playerIndex].name,
+          team: action.team === "teamA" ? "A" : "B",
+          minute: action.minute,
+        })),
+      };
+      await fetch("/api/matches", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      navigate("/recap", { state: { match, history, time } });
+    } catch (err) {
+      console.error("Failed to save match:", err);
+      alert("Erreur lors de la sauvegarde du match.");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -124,8 +131,8 @@ export default function Match() {
         <span className="score-b">{scoreB}</span>
       </div>
 
-      <button className="end-button" onClick={onSubmit}>
-        Terminer le match
+      <button className="end-button" onClick={onSubmit} disabled={isSaving}>
+        {isSaving ? "Sauvegarde..." : "Terminer le match"}
       </button>
 
       <div className="teams">
