@@ -78,16 +78,15 @@
 
       .delete-button {
         padding: 8px 20px;
-        background-color: #1a1a1a;
-        color: #888;
-        border: 1px solid #333;
+        background-color: #7f1d1d;
+        color: #fca5a5;
+        border: 1px solid #991b1b;
         border-radius: 4px;
         cursor: pointer;
         font-size: 0.9rem;
 
         &:hover {
-          color: #fca5a5;
-          border-color: #7f1d1d;
+          background-color: #991b1b;
         }
       }
 
