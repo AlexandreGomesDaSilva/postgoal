@@ -9,10 +9,13 @@ export default function History() {
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
   const deleteMatch = (id) => {
-    fetch(`/api/matches/${id}`, { method: "DELETE" }).then(() => {
-      setMatches((prev) => prev.filter((m) => m._id !== id));
-      setConfirmDeleteId(null);
-    });
+    fetch(`/api/matches/${id}`, { method: "DELETE" })
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        setMatches((prev) => prev.filter((m) => m._id !== id));
+        setConfirmDeleteId(null);
+      })
+      .catch(() => setConfirmDeleteId(null));
   };
 
   useEffect(() => {
