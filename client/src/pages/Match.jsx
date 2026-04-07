@@ -81,9 +81,26 @@ export default function Match() {
   const scoreA = match.teamA.reduce((total, p) => total + p.goals.length, 0);
   const scoreB = match.teamB.reduce((total, p) => total + p.goals.length, 0);
 
-  const onSubmit = () => {
-    // Logique pour terminer le match et afficher les statistiques
-    console.log("Match terminé !");
+  const onSubmit = async () => {
+    const payload = {
+      duration: formatTime(time),
+      teamA: match.teamA.map((p) => p.name),
+      teamB: match.teamB.map((p) => p.name),
+      scoreA,
+      scoreB,
+      goals: history.map((action) => ({
+        player: match[action.team][action.playerIndex].name,
+        team: action.team === "teamA" ? "A" : "B",
+        minute: action.minute,
+      })),
+    };
+
+    await fetch("/api/matches", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
     navigate("/recap", { state: { match, history, time } });
   };
 
