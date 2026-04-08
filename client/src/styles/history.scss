@@ -66,6 +66,10 @@
       justify-content: flex-end;
       flex-wrap: wrap;
 
+      @media (max-width: 480px) {
+        justify-content: center;
+      }
+
       .details-button {
         padding: 8px 20px;
         background-color: #14532d;
